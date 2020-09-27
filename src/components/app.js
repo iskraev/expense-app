@@ -11,11 +11,11 @@ function App() {
   const history = useHistory();
   return (
     <div className={Styles.app}>
-      <Switch>
+      {/* <Switch>
         <Route exact path='/' component={Main}/>
         <Route exact path='/reports' component={Reports}/>
         <Route exact path='/accounts/:account' component={AccountPage} history={history}/>
-      </Switch>
+      </Switch> */}
     </div>
   );
 }
