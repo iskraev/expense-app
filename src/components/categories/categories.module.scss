@@ -1,0 +1,28 @@
+.type{
+    width: 80px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 35px;
+}
+
+.titleInput{
+    width: 200px !important;
+    padding: 5px 3px;
+    margin-left: 10px;
+    width: 50%;
+}
+
+.colorInput{
+    margin-left: 10px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}

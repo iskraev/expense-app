@@ -1,0 +1,108 @@
+
+.rows{
+}
+.rows > div{
+    display: flex;
+    font-size: 0.8em;
+    align-items: center;    
+}
+//time
+.rows > div:nth-child(1){
+    width: 65px;
+    // font-size: 0.7em;
+}
+
+.time{
+   font-size: 0.7em !important;
+}
+//title
+.rows > div:nth-child(2){
+    width: 180px;
+}
+//Account
+.rows > div:nth-child(3){
+    width: 90px;
+}
+//Category
+.rows > div:nth-child(4){
+    width: 90px;
+}   
+//amount
+.rows > div:nth-child(5){
+    width: 80px;
+    
+}
+//filter
+.rows > div:nth-child(6){
+    width: 150px;
+    justify-content: space-evenly;
+}
+
+.rows > div:nth-child(6) > select{
+    width: 50px;
+    
+}
+
+
+.highlightSort{
+    background-color: rgb(226, 226, 226);
+}
+
+.dateRow{
+    text-align: center;
+    padding: 10px;
+    background-color: blanchedalmond;
+}
+
+.reports > div:first-child{
+ 
+    border: none;
+}
+
+.reports{
+    max-height: 100%;
+}
+
+.reportList{
+    max-height: initial !important;
+}
+
+.reportsChoices{
+    display: flex;
+    flex-direction: column;
+}
+.reportsChoices > div{
+    display: flex;
+    justify-content: space-evenly !important;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.reportsChoices > div >  div:hover{
+  color: red;
+}
+.reportsChoices > div:first-child{
+    font-size: 1.3em;
+}
+
+
+.reportNewExpense > div:nth-child(2){
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.reportNewExpense > div:nth-child(2) > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    font-size: 1.7em;
+}
+
+.reportsActive{
+    color: rgb(255, 30, 0);
+    border-bottom: 2px dashed rgb(255, 30, 0);
+}

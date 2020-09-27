@@ -1,0 +1,154 @@
+.mainContainer{
+    max-height: 80px;
+    overflow: hidden;
+    box-sizing: border-box; 
+    margin: 20px 0;
+    transition: max-height 1.5s cubic-bezier(0, 1, 0, 1);
+    position: relative;
+}
+.mainContainerList{
+    overflow: auto;
+    max-height: 350px;
+}
+.emptyListItem{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+}
+.listHeader{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    color: gray;
+    padding: 0 10px;
+
+}
+.mainContainerOpen{
+    transition: max-height 1s ease;
+    max-height: 500px;
+}
+
+.mainContainer > div:first-child{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.mainContainer > div:first-child > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    font-size: 1.7em;
+}
+
+
+.mainContainerButtons{
+    display: flex;
+}
+
+.mainContainerButtons > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px !important;
+    font-size: 1.4em !important;
+    color: gray;
+}
+
+.mainContainerButtons > div:first-child:hover{
+    color: black;
+}
+
+.addForm form{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.addForm form > div:first-child > *{
+    margin-left: 10px;
+}
+.addForm input{
+    width: 50%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.addForm form > div{
+    display: flex;
+}
+.addForm button{
+    width: 70px;
+    padding: 10px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.colorInput{
+    padding: 0 !important;
+    width: 35px !important;
+    height: 35px !important;
+}
+
+.singleItem{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin: 5px 0;
+    padding: 0 10px;
+
+}
+
+.singleItem:hover{
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+}
+
+.singleItem > div{
+    // margin: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.singleItem > div:first-child{
+    font-size: 1.2em;
+}
+
+.singleItem > div:last-child{
+    font-size: 1.5em;
+}
+
+.edit:hover{
+    color: rgb(35, 172, 35);
+}
+
+.editButtons > *{
+    margin: 0 5px
+}
+
+.singleItemDelete{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.2em;
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+}
+.singleItemDelete  button{
+    margin: 0 20px;
+    padding: 5px 0;
+    width: 70px;
+}
+
