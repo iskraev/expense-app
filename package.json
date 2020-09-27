@@ -1,4 +1,5 @@
 {
+  "homepage": "http://iskraev.github.io/expense-app",
   "name": "expenses",
   "version": "0.1.0",
   "private": true,
@@ -25,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,6 +46,9 @@
   },
   "engines": {
     "npm": "6.14.6",
-    "node": "12.18.3"
+    "node": "3.10.10"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
