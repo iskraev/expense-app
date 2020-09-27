@@ -9,7 +9,7 @@ const Root = ({ store }) => (
     <BrowserRouter>
       {/* <> */}
         {/* <Header state={store.getState()}/> */}
-        <App/>
+        {/* <App/> */}
       {/* </> */}
     </BrowserRouter>
   </Provider>
