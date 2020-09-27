@@ -6,7 +6,7 @@ import Header from './header';
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/expense-app">
       {/* <> */}
         {/* <Header state={store.getState()}/> */}
         {/* <App/> */}
