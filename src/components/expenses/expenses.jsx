@@ -287,7 +287,7 @@ export default class Expenses extends React.Component {
                         {this.printAccountsChoices()}
                         {this.printCategoriesChoices()}
                     </div>
-                    {sortByAccounts || sortByCategory ? <div onClick={() => this.setState({ sortByAccounts: false, sortByCategory: false, titleAsc: false, dateAsc: false })}><FiX /></div> : ''}
+                    {sortByAccounts || sortByCategory ? <div onClick={() => this.setState({ sortByAccounts: false, sortByCategory: false, titleAsc: false, dateAsc: false })} className={Styles.resetFilters}><FiX />Reset</div> : ''}
                 </div>
                 <hr />
 

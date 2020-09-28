@@ -4,7 +4,14 @@
 .rows > div{
     display: flex;
     font-size: 0.8em;
-    align-items: center;    
+    align-items: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */    
 }
 //time
 .rows > div:nth-child(1){
@@ -45,7 +52,9 @@
 
 
 .highlightSort{
-    background-color: rgb(226, 226, 226);
+    color: black;
+    font-weight: 700;
+    
 }
 
 
@@ -101,4 +110,15 @@
 .reportsActive{
     color: rgb(255, 30, 0);
     border-bottom: 2px dashed rgb(255, 30, 0);
+}
+
+.resetFilters{
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    
+    color: black;
+    
+    
+    margin-left: 20px;
 }
