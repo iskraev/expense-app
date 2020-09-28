@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { deleteAccount, receiveAccount, updateAccount } from '../../actions/accounts_actions';
-import Accounts from './accounts'
+import Accounts from './accounts';
+import { withAlert } from 'react-alert';
 
 const mapStateToProps = (state) => ({
     accounts: state.accounts
@@ -13,4 +14,4 @@ const mapDispatchToProps = (dispatch) => ({
     deleteAccount: (account) => dispatch(deleteAccount(account))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Accounts));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withAlert()(Accounts)));

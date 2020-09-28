@@ -58,7 +58,7 @@ export default class ExpenseItem extends React.Component {
 
     updateExpense() {
         const { updateExpense, expense } = this.props;
-        const newExpense = { ... this.state };
+        const newExpense = { ...this.state };
         delete newExpense['edit']
         delete newExpense['showDelete']
         this.setState({ edit: false }, () => {

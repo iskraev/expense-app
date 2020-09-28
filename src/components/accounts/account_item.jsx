@@ -1,11 +1,10 @@
 import React from 'react';
-import { FiChevronDown, FiChevronUp, FiX, FiEdit3, FiCheck, FiTrash } from 'react-icons/fi'
+import { FiX, FiEdit3, FiCheck, FiTrash } from 'react-icons/fi'
 import { RiBankLine } from 'react-icons/ri'
 import { FaMoneyBillWave } from 'react-icons/fa'
 import { AiFillCreditCard } from "react-icons/ai";
 import StylesCommon from '../common.module.scss';
 import Styles from './accounts.module.scss';
-import { deleteAccount } from '../../actions/accounts_actions';
 export default class AccountItem extends React.Component {
     constructor(props) {
         super(props);
@@ -53,7 +52,6 @@ export default class AccountItem extends React.Component {
     }
 
     updateAccount() {
-        const state = this.state;
         const { updateAccount, account } = this.props;
         const updatedAccount = Object.assign(account, this.state)
         delete updateAccount['edit']

@@ -1,10 +1,9 @@
 import React from 'react';
-import StylesCommon from '../common.module.scss';
+
 import { RiBankLine } from 'react-icons/ri'
 import { FaMoneyBillWave } from 'react-icons/fa'
 import { AiFillCreditCard } from "react-icons/ai";
 import Styles from './account_page.module.scss'
-import Accounts from '../accounts/accounts'
 import currency from 'currency.js';
 
 

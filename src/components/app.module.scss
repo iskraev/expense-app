@@ -3,4 +3,7 @@
     padding: 0 15px;
     box-sizing: border-box;
     background-color: #f1faee;
+    min-height: calc(100vh - 160px);
+    max-height: infinite;
+
 }

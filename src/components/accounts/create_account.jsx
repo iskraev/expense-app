@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiChevronDown, FiChevronUp, FiPlus } from 'react-icons/fi'
 import StylesCommon from '../common.module.scss';
 import { v4 as uuidv4 } from 'uuid'
 

@@ -48,9 +48,9 @@ export default (state = {}, action) => {
 
         case DELETE_ACCOUNT:
             Object.values(nextState).forEach(category => {    
-                category.expenses = category.expenses.filter(id => {
-                    if(!action.account.expenses.includes(id)) return id;
-                })
+                category.expenses = category.expenses.filter(id => 
+                    !action.account.expenses.includes(id)   
+                )
             })
             updateLocalStorage('expenses', nextState);
             return nextState;

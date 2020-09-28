@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { deleteExpense, receiveExpense, updateExpense } from '../../actions/expenses_actions';
-
+import { withAlert } from 'react-alert';
 import Reports from './reports'
 
 const mapStateToProps = (state) => ({
@@ -16,4 +16,4 @@ const mapDispatchToProps = (dispatch) => ({
     deleteExpense: (expense) => dispatch(deleteExpense(expense))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Reports));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withAlert()(Reports)));

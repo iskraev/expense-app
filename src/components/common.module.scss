@@ -9,6 +9,7 @@
 .mainContainerList{
     overflow: auto;
     max-height: 350px;
+    // padding-bottom: 20px;
 }
 .emptyListItem{
     height: 50px;
@@ -16,6 +17,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1.5em;
+    margin: 20px 0;
 }
 .listHeader{
     margin-top: 10px;
@@ -152,3 +154,8 @@
     width: 70px;
 }
 
+.dateRow{
+    text-align: center !important;
+    padding: 10px !important;
+    background-color: blanchedalmond !important;
+}

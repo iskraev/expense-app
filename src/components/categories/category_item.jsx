@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiChevronDown, FiChevronUp, FiX, FiEdit3, FiCheck, FiTrash } from 'react-icons/fi'
+import { FiX, FiEdit3, FiCheck, FiTrash } from 'react-icons/fi'
 
 import StylesCommon from '../common.module.scss';
 import Styles from './categories.module.scss';

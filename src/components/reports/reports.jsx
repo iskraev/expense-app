@@ -46,11 +46,26 @@ export default class Reports extends React.Component {
                 this.addTime('monthly', date, this.printDate(date.getTime()))
             }
         }
+
+        const { expenses, alert } = this.props;
+        if(Object.values(expenses).length > Object.values(prevProps.expenses).length){   
+            alert.success('EXPENSE ADDED')
+        }else if(Object.values(expenses).length < Object.values(prevProps.expenses).length){
+            alert.success('EXPENSE DELETED')
+        }
+        
+    
     }
 
     add(e) {
+        const { accounts, alert } = this.props;
+
         e.stopPropagation();
-        this.setState({ addNew: true })
+        if(Object.values(accounts).length === 0){
+            alert.error('Create account first')
+        }else{
+            this.setState({ addNew: true })
+        }
     }
 
     cancel(e) {
@@ -110,7 +125,7 @@ export default class Reports extends React.Component {
                 }
             }
         })
-        console.log("T1", array)
+     
         return array;
     }
 
@@ -120,13 +135,14 @@ export default class Reports extends React.Component {
             let bdate = new Date(b.date)
             if (list[a[column]].title === list[b[column]].title) {
                 if (asc) {
-                    console.log('test1')
+                   
                     return adate - bdate;
                 } else {
-                    console.log('test2')
+                 
                     return bdate - adate;
                 }
             }
+            return -1;
         })
         return array;
     }
@@ -185,14 +201,26 @@ export default class Reports extends React.Component {
         if (Object.keys(expenses).length === 0) {
             return (
                 <div className={StylesCommon.emptyListItem}>
-                    No expenses
+                    No Expenses
                 </div>
             )
         } else {
             let prevDate = null;
+            let array = this.sort(this.printFiltered(this.filterReports(Object.values(expenses))));
             return (
                 <div className={`${StylesCommon.mainContainerList} ${Styles.reportList}`}>
-                    {this.sort(this.printFiltered(this.filterReports(Object.values(expenses)))).map((expense, i) => {
+                    {array.length === 0 ? <div className={StylesCommon.emptyListItem}>No Expenses</div> : ''}
+                    {array.map((expense, i) => {
+
+
+                        if (i === array.length - 1) {
+                            return (
+                                <div key={`expense-${expense.id}`}>
+                                    <ExpenseItem  history={history} accounts={accounts} categories={categories} expense={expense} updateExpense={updateExpense} deleteExpense={deleteExpense} />
+                                    <div className={StylesCommon.dateRow}>End of the list</div>
+                                </div>
+                            )
+                        }
 
                         if (prevDate !== this.printDate(expense.date)) {
 
@@ -200,10 +228,10 @@ export default class Reports extends React.Component {
                             prevDate = prevDate.split('-');
                             prevDate = `${this.allMonths[prevDate[0] - 1]} ${prevDate[1]}, ${prevDate[2]}`;
                             return (
-                                < >
-                                    <div className={Styles.dateRow}><FiChevronDown />{prevDate}<FiChevronDown /></div>
-                                    <ExpenseItem key={`expense-${expense.id}`} history={history} accounts={accounts} categories={categories} expense={expense} updateExpense={updateExpense} deleteExpense={deleteExpense} />
-                                </>
+                                <div key={`expense-${expense.id}`} > 
+                                    <div className={StylesCommon.dateRow}><FiChevronDown />{prevDate}<FiChevronDown /></div>
+                                    <ExpenseItem history={history} accounts={accounts} categories={categories} expense={expense} updateExpense={updateExpense} deleteExpense={deleteExpense} />
+                                </div>
                             )
                         } else {
                             return <ExpenseItem key={`expense-${expense.id}`} history={history} accounts={accounts} categories={categories} expense={expense} updateExpense={updateExpense} deleteExpense={deleteExpense} />
@@ -377,7 +405,7 @@ export default class Reports extends React.Component {
 
 
     render() {
-        console.log(this.state)
+        
         const { sortByAccounts, sortByCategory, titleAsc, dateAsc, daily, monthly, weekly, custom, start, end, all } = this.state;
         return (
             <div className={`${Styles.reportNewExpense} ${Styles.reports}`} >

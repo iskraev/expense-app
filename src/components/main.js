@@ -6,7 +6,7 @@ export default () => (
     <>
         <div className='dashboard'>Dashboard</div>
         <Accounts />
-        <Expenses />
         <Categories />
+        <Expenses />
     </>
 )

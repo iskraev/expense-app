@@ -9,7 +9,7 @@ import configureStore from './store/store';
 
 const initialState = {
   user: {
-    username: 'demo'
+    username: 'Stranger'
   },
   accounts: {},
   categories: { 'none': {

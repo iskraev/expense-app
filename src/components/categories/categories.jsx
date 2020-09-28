@@ -20,6 +20,16 @@ export default class Categories extends React.Component {
         this.createCategory = this.createCategory.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState){
+        const { categories, alert } = this.props;
+        if(Object.values(categories).length > Object.values(prevProps.categories).length){   
+            alert.success('CATEGORY ADDED')
+        }else if(Object.values(categories).length < Object.values(prevProps.categories).length){
+            alert.success('CATEGORY DELETED')
+        }
+    
+    }
+
     add(e) {
         e.stopPropagation();
         this.setState({ openContainer: false, addNew: true })
@@ -93,11 +103,22 @@ export default class Categories extends React.Component {
                 </div>
             )
         } else {
+            let array = this.sortByTitle(Object.values(categories), asc);
             return (
                 <div className={StylesCommon.mainContainerList}>
-                    {this.sortByTitle(Object.values(categories), asc).map((category) => (
-                        <CategoryItem key={`category-${category.id}`} history={history} category={category} updateCategory={updateCategory} deleteCategory={deleteCategory} />
-                    ))}
+                    {array.length === 0 ? <div className={StylesCommon.emptyListItem}>No Categories</div> : ''}
+                    {array.map((category, i) => {
+                        if(array.length - 1 === i){
+                            return (
+                                <div key={`category-${category.id}`}>
+                                    <CategoryItem  history={history} category={category} updateCategory={updateCategory} deleteCategory={deleteCategory} />
+                                    <div className={StylesCommon.dateRow}>End of the list</div>
+                                </div>
+                            )
+                        }else{
+                            return <CategoryItem key={`category-${category.id}`} history={history} category={category} updateCategory={updateCategory} deleteCategory={deleteCategory} />
+                        }
+                    })}
                 </div>
             )
         }
@@ -115,6 +136,8 @@ export default class Categories extends React.Component {
                 <hr />
 
                 {this.printList()}
+
+                <hr/>
             </div>
         )
     }

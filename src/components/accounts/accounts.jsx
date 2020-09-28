@@ -19,6 +19,16 @@ export default class Accounts extends React.Component {
         this.createAccount = this.createAccount.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState){
+        const { accounts, alert } = this.props;
+        if(Object.values(accounts).length > Object.values(prevProps.accounts).length){   
+            alert.success('ACCOUNT ADDED')
+        }else if(Object.values(accounts).length < Object.values(prevProps.accounts).length){
+            alert.success('ACCOUNT DELETED')
+        }
+    
+    }
+
     add(e) {
         e.stopPropagation();
         this.setState({ openContainer: false, addNew: true })
@@ -47,7 +57,7 @@ export default class Accounts extends React.Component {
         } else {
             return (
                 <div onClick={() => this.setState({ openContainer: !openContainer })}>
-                    <div>My accounts</div>
+                    <div>My Accounts</div>
                     <div>
                         <div className={StylesCommon.mainContainerButtons}>
                             <div onClick={(e) => this.add(e)}><FiPlus /></div>
@@ -81,22 +91,35 @@ export default class Accounts extends React.Component {
         return array;
     }
 
-    printList(){
+    printList() {
         const { accounts, deleteAccount, updateAccount, history } = this.props;
         const { asc } = this.state;
 
-        if(Object.keys(accounts).length === 0){
-            return(
+        if (Object.keys(accounts).length === 0) {
+            return (
                 <div className={StylesCommon.emptyListItem}>
-                    No accounts
+                    No Accounts
                 </div>
             )
-        }else{
-            return(
+        } else {
+            let array = this.sortByTitle(Object.values(accounts), asc);
+            return (
                 <div className={StylesCommon.mainContainerList}>
-                    {this.sortByTitle(Object.values(accounts), asc).map((account) => (
-                        <AccountItem key={`account-${account.id}`} history={history} account={account} updateAccount={updateAccount} deleteAccount={deleteAccount} />
-                    ))}
+                    {array.length === 0 ? <div className={StylesCommon.emptyListItem}>No Accounts</div> : ''}
+                    {array.map((account, i) => {
+                        if (array.length - 1 === i) {
+                            return (
+                                <div key={`account-${account.id}`}>
+                                    <AccountItem  history={history} account={account} updateAccount={updateAccount} deleteAccount={deleteAccount} />
+
+                                    <div className={StylesCommon.dateRow}>End of the list</div>
+                                </div>
+                            )
+                        } else {
+                            return <AccountItem key={`account-${account.id}`} history={history} account={account} updateAccount={updateAccount} deleteAccount={deleteAccount} />
+
+                        }
+                    })}
                 </div>
             )
         }
@@ -110,11 +133,13 @@ export default class Accounts extends React.Component {
 
                 <div className={StylesCommon.listHeader}>
                     <div className={Styles.type}>Type</div>
-                    <div className={Styles.title} onClick={() => this.setState({asc: !asc})}>Title{asc ? <FiChevronDown /> : <FiChevronUp />}</div>
+                    <div className={Styles.title} onClick={() => this.setState({ asc: !asc })}>Title{asc ? <FiChevronDown /> : <FiChevronUp />}</div>
                 </div>
                 <hr />
 
                 {this.printList()}
+
+                <hr/>
             </div>
         )
     }
