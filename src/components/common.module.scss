@@ -103,7 +103,7 @@
     margin-left: 10px;
 }
 .addForm input{
-    width: 50%;
+    width: 300px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;
@@ -161,8 +161,16 @@
 }
 
 .editButtons > *{
-    margin: 0 5px
+    margin: 0 5px;
+    color: rgb(149, 149, 149);
 }
+
+.editButtons > *:hover{
+    margin: 0 5px;
+    color: black;
+}
+
+
 
 .singleItemDelete{
     display: flex;

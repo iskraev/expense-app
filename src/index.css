@@ -46,5 +46,14 @@ body{
 }
 
 footer{
+  
+  display: flex !important;
+}
 
+footer > div{
+  width: 875px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
 }

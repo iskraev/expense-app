@@ -16,32 +16,7 @@ export default class CategoryItem extends React.Component {
         }
     }
 
-    // printIcon() {
-    //     const { type } = this.state;
-    //     if (type === 'bankAccount') {
-    //         return (
-    //             <>
-    //                 <RiBankLine /> Bank
-    //             </>
-    //         )
-    //     }
-    //     if (type === 'credit') {
-    //         return (
-    //             <>
-    //                 <AiFillCreditCard /> Credit
-    //             </>
-    //         )
-    //     }
-
-    //     if (type === 'cash') {
-    //         return (
-    //             <>
-    //                 <FaMoneyBillWave /> Cash
-    //             </>
-    //         )
-    //     }
-    // }
-
+   
     update(input) {
         return e => {
             this.setState({ [input]: e.currentTarget.value })
@@ -49,12 +24,13 @@ export default class CategoryItem extends React.Component {
     }
 
     updateCategory() {
-        const { updateCategory, category} = this.props;
+        const { updateCategory, category, alert} = this.props;
         const updatedCategory = Object.assign(category, this.state)
         delete updatedCategory['edit']
         delete updatedCategory['showDelete']
         this.setState({ edit: false }, () => {
             updateCategory(updatedCategory)
+            alert.success("CATEGORY UPDATED")
         })
     }
 
@@ -73,7 +49,7 @@ export default class CategoryItem extends React.Component {
 
     printItemOrEdit() {
         const {  edit,  title, color, showDelete } = this.state;
-        const { category} = this.props;
+        const { category, history} = this.props;
 
 
         if (showDelete) {
@@ -91,7 +67,7 @@ export default class CategoryItem extends React.Component {
                 <div className={StylesCommon.singleItem}>
                     <div>
 
-                        {category.id === 'none' ? <div style={{ color: color }}className={Styles.titleInput} >{title}</div> : <input style={{ color: color }} value={title} className={Styles.titleInput} onChange={this.update('title')} />}
+                        {category.id === 'none' ? <div style={{ color: color }}className={Styles.titleInput} >{title}</div> : <input style={{ color: color }} maxLength={45} value={title} className={Styles.titleInput} onChange={this.update('title')} />}
 
                         <input className={Styles.colorInput} type="color" onChange={this.update('color')} value={color} />
                     </div>
@@ -104,10 +80,10 @@ export default class CategoryItem extends React.Component {
             )
         } else {
             return (
-                // onClick={() => history.push(`categories/${category.id}`)}
+                
                 <div className={StylesCommon.singleItem} >
                     <div>
-                        <div className={Styles.title} style={{ color: category.color }}>{category.title}</div>
+                        <div className={Styles.title} style={{ color: category.color }} onClick={() => history.push(`categories/${category.id}`)}>{category.title}</div>
                     </div>
                     <div className={StylesCommon.edit}>
                         <FiEdit3 onClick={(e) => this.openEdit(e)} />

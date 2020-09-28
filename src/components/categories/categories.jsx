@@ -93,7 +93,7 @@ export default class Categories extends React.Component {
     }
 
     printList() {
-        const { categories, deleteCategory, updateCategory, history } = this.props;
+        const { categories, deleteCategory, updateCategory, history, alert } = this.props;
         const { asc } = this.state;
 
         if (Object.values(categories).length === 0) {
@@ -111,12 +111,12 @@ export default class Categories extends React.Component {
                         if(array.length - 1 === i){
                             return (
                                 <div key={`category-${category.id}`}>
-                                    <CategoryItem  history={history} category={category} updateCategory={updateCategory} deleteCategory={deleteCategory} />
+                                    <CategoryItem  alert={alert} history={history} category={category} updateCategory={updateCategory} deleteCategory={deleteCategory} />
                                     <div className={StylesCommon.dateRow}>End of the list</div>
                                 </div>
                             )
                         }else{
-                            return <CategoryItem key={`category-${category.id}`} history={history} category={category} updateCategory={updateCategory} deleteCategory={deleteCategory} />
+                            return <CategoryItem alert={alert} key={`category-${category.id}`} history={history} category={category} updateCategory={updateCategory} deleteCategory={deleteCategory} />
                         }
                     })}
                 </div>

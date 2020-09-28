@@ -1,27 +1,32 @@
 .type{
-    width: 80px;
-    text-align: center;
+    width: 105px;
+    // text-align: center;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
 .title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 35px;
-}
+    height: 20px;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    max-width: 600px;
+    cursor: pointer;
 
+}
+.title:hover{
+    border-bottom: 1px solid black;
+}
 .titleInput{
-    width: 200px !important;
+    width: 300px !important;
     padding: 5px 3px;
-    margin-left: 10px;
+    margin-right: 10px;
     width: 50%;
 }
 
 .colorInput{
-    margin-left: 10px;
+    margin-right: 10px;
     padding: 0;
     width: 30px;
     height: 30px;

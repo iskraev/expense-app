@@ -9,6 +9,41 @@
     box-sizing: border-box;
 }
 
+.header img{
+    width: 50px;
+    height: 50px;
+    transition: transform 0.6s, transform 1s;
+    animation: move;
+    animation-duration: 0.4s;
+}
+
+.header img:hover{
+    transform: rotateZ(360deg);
+    transition: transform 0.6s, transform 1s;
+}
+
+.header img:active{
+    transform: scale(0.1);
+    transition: transform 0.4s;
+}
+
+@keyframes move{
+    from{
+        transform: scale(0.1);
+    }
+
+    to{
+        transform: scale(1);
+    }
+}
+
+
+
+.header > div:first-child{
+    display: flex;
+    align-items: center;
+}
+
 .header > div:first-child > a{
     font-size: 1.3em;
     text-decoration: none;

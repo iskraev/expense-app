@@ -1,48 +1,85 @@
 
 .rows{
-    display: table;
 }
-.rows > div{
-    height: 20px;
-    // display: flex;
+.rows > div, .singleItemChange > *{
+    // height: 20px;
+    display: flex;
     font-size: 0.8em;
-    // align-items: center;
+    align-items: center;
     margin-right: 10px;
-   
-    // justify-content: center;
-    display: table-cell;
-    vertical-align: middle;
-    
-}
-//time
-.rows > div:nth-child(1){
-    width: 55px;
-    // font-size: 0.7em;
 }
 
-.time{
-   font-size: 0.7em !important;
+//time
+.rows > div:nth-child(1), .singleItemChange > *:nth-child(1){
+    width: 55px;
 }
-//title
-.rows > div:nth-child(2){
-    width: 180px;
+.rowsOfItem{
+    display: table;
 }
-//Account
-.rows > div:nth-child(3){
-    width: 120px !important;
+.rowsOfItem > div{
+    display: table-cell !important;
+    vertical-align: middle;
     overflow: hidden !important;
     white-space: nowrap !important;
     text-overflow: ellipsis !important;
 }
+
+.addForm > form:first-child > div {
+    display: flex;
+    align-items: center;
+}
+.addForm > form:first-child > div > input{
+    margin-left: 0 !important;
+}
+
+.addForm > form:first-child > div > *{
+    margin-right: 10px !important;
+}
+.addForm > form:first-child > div > *:nth-child(2){
+    width: 90px !important;
+}
+
+.addForm > form:first-child > div > *:nth-child(3){
+    width: 90px !important;
+}
+
+.addForm > form:first-child > div > select{
+    width: 80px !important;
+}
+.open{
+    max-height: initial !important;
+}
+
+.total{
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    font-size: 1.5em;
+}
+.time{
+   font-size: 0.7em !important;
+}
+//title
+.singleItemChange > *{
+    box-sizing: border-box;
+}
+.rows > div:nth-child(2), .singleItemChange > *:nth-child(2){
+    width: 180px;
+}
+//Account
+.rows > div:nth-child(3), .singleItemChange > *:nth-child(3){
+    width: 120px;
+    
+}
 //Category
-.rows > div:nth-child(4){
-    width: 120px !important;
+.rows > div:nth-child(4), .singleItemChange > *:nth-child(4){
+    width: 120px;
     overflow: hidden !important;
     white-space: nowrap !important;
     text-overflow: ellipsis !important;
 }   
 //amount
-.rows > div:nth-child(5){
+.rows > div:nth-child(5),  .singleItemChange > *:nth-child(5){
     width: 80px;
     
 }
@@ -52,7 +89,7 @@
     justify-content: space-evenly;
 }
 
-.rows > div:nth-child(6) > select{
+.rows > div:nth-child(6) select{
     width: 50px;
     
 }

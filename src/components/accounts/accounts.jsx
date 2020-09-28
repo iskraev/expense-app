@@ -26,7 +26,6 @@ export default class Accounts extends React.Component {
         }else if(Object.values(accounts).length < Object.values(prevProps.accounts).length){
             alert.success('ACCOUNT DELETED')
         }
-    
     }
 
     add(e) {
@@ -92,9 +91,9 @@ export default class Accounts extends React.Component {
     }
 
     printList() {
-        const { accounts, deleteAccount, updateAccount, history } = this.props;
+        const { accounts, deleteAccount, updateAccount, history, alert } = this.props;
         const { asc } = this.state;
-
+        
         if (Object.keys(accounts).length === 0) {
             return (
                 <div className={StylesCommon.emptyListItem}>
@@ -110,13 +109,13 @@ export default class Accounts extends React.Component {
                         if (array.length - 1 === i) {
                             return (
                                 <div key={`account-${account.id}`}>
-                                    <AccountItem  history={history} account={account} updateAccount={updateAccount} deleteAccount={deleteAccount} />
+                                    <AccountItem  alert={alert} history={history} account={account} updateAccount={updateAccount} deleteAccount={deleteAccount} />
 
                                     <div className={StylesCommon.dateRow}>End of the list</div>
                                 </div>
                             )
                         } else {
-                            return <AccountItem key={`account-${account.id}`} history={history} account={account} updateAccount={updateAccount} deleteAccount={deleteAccount} />
+                            return <AccountItem  alert={alert} key={`account-${account.id}`} history={history} account={account} updateAccount={updateAccount} deleteAccount={deleteAccount} />
 
                         }
                     })}
@@ -133,7 +132,7 @@ export default class Accounts extends React.Component {
 
                 <div className={StylesCommon.listHeader}>
                     <div className={Styles.type}>Type</div>
-                    <div className={Styles.title} onClick={() => this.setState({ asc: !asc })}>Title{asc ? <FiChevronDown /> : <FiChevronUp />}</div>
+                    <div className={`${Styles.title} ${Styles.titleColumn}`} onClick={() => this.setState({ asc: !asc })}>Title{asc ? <FiChevronDown /> : <FiChevronUp />}</div>
                 </div>
                 <hr />
 

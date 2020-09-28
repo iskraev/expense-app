@@ -12,7 +12,25 @@
 
 .accountTitle{
     font-size: 1.3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 20px 0
 }
+
+.accountTitle > div{
+    margin-right: 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accountTitle > div:first-child{
+    font-size: 1.3em;
+}
+
+
 
 .rows > div{
     display: flex;

@@ -52,13 +52,14 @@ export default class AccountItem extends React.Component {
     }
 
     updateAccount() {
-        const { updateAccount, account } = this.props;
+        const { updateAccount, account, alert } = this.props;
         const updatedAccount = Object.assign(account, this.state)
         delete updateAccount['edit']
         delete updateAccount['showDelete']
 
         this.setState({ edit: false }, () => {
             updateAccount(updatedAccount)
+            alert.success("ACCOUNT UPDATED")
         })
     }
 
@@ -76,8 +77,9 @@ export default class AccountItem extends React.Component {
     }
 
     printItemOrEdit() {
-        const {  edit,  title, color, type, showDelete } = this.state;
-        const { account} = this.props;
+        
+        const {  edit,  title, color, type, showDelete  } = this.state;
+        const { account, history} = this.props;
 
 
         if (showDelete) {
@@ -100,7 +102,7 @@ export default class AccountItem extends React.Component {
                             <option value="cash">Cash</option>
                         </select>
 
-                        <input style={{ color: color }} value={title} className={Styles.titleInput} onChange={this.update('title')} />
+                        <input style={{ color: color }} value={title} className={Styles.titleInput} onChange={this.update('title')} maxLength={45}/>
 
                         <input className={Styles.colorInput} type="color" onChange={this.update('color')} value={color} />
                     </div>
@@ -113,11 +115,11 @@ export default class AccountItem extends React.Component {
             )
         } else {
             return (
-                // onClick={() => history.push(`accounts/${account.id}`)}
                 <div className={StylesCommon.singleItem}>
                     <div>
                         <div className={Styles.type}>{this.printIcon()}</div>
-                        <div className={Styles.title} style={{ color: account.color }}>{account.title}</div>
+                
+                        <div className={Styles.title} style={{ color: account.color }} onClick={() => history.push(`accounts/${account.id}`)}>{account.title}</div>
                     </div>
                     <div className={StylesCommon.edit}>
                         <FiEdit3 onClick={(e) => this.openEdit(e)} />

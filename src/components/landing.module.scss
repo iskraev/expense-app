@@ -1,0 +1,42 @@
+.landing{
+   height: 100% !important;
+}
+.landing > div{
+    
+    // padding: 10% 0;
+}
+.landing > div:nth-child(1){
+    font-size: 2em;
+    margin-top: 40px;
+   text-align: center;
+   line-height: 50px;
+}
+
+
+.landing > div:nth-child(2){
+    font-size: 2em;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.landing > a{
+    font-size: 2em;
+    text-align: center;
+}
+
+.landing a:visited{
+    color: initial;
+}
+.landing a:hover{
+    color: rgb(105, 211, 0);
+}
+
+.landing > div:nth-child(4){
+   
+    font-size: 2em;
+   
+}
+
+.mint{
+    color: #02E0A8;
+}

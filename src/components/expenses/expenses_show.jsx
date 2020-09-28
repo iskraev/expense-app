@@ -5,7 +5,7 @@ import StylesCommon from '../common.module.scss';
 import CreateExpense from './create_expense';
 import ExpenseItem from './expense_item';
 import Styles from './expenses.module.scss';
-
+import currency from 'currency.js'
 
 export default class Expenses extends React.Component {
     constructor(props) {
@@ -19,14 +19,19 @@ export default class Expenses extends React.Component {
             titleAsc: false,
             filterAccounts: "All",
             filterCategories: "All",
+            
         }
 
         this.cancel = this.cancel.bind(this);
         this.createExpense = this.createExpense.bind(this);
-        this.allMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        this.allMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     }
 
+    componentDidMount(){
+        
+    }
     componentDidUpdate(prevProps, prevState){
+
         const { expenses, alert } = this.props;
         if(Object.values(expenses).length > Object.values(prevProps.expenses).length){   
             alert.success('EXPENSE ADDED')
@@ -237,10 +242,18 @@ export default class Expenses extends React.Component {
 
     printAccountsChoices() {
         const { accounts } = this.props;
+        const expenses = Object.values(this.props.expenses);
+        const array = []
+        expenses.forEach(expense => {
+            
+            if(!array.some(account => expense.accountId === account.id)){
+                array.push(accounts[expense.accountId])
+            }
+        })
         return (
             <select className={StylesCommon.selectInput} onChange={this.update('filterAccounts')} defaultValue={'All'}>
                 <option key={`option-all-filter-accounts`} value={'All'}>All</option>
-                {Object.values(accounts).map((account) => {
+                {array.map((account) => {
                     return <option key={`option-${account.id}-filter-accounts`} value={account.id}>{account.title}</option>
                 })}
             </select>
@@ -250,10 +263,18 @@ export default class Expenses extends React.Component {
 
     printCategoriesChoices() {
         const { categories } = this.props;
+        const expenses = Object.values(this.props.expenses);
+        const array = []
+        expenses.forEach(expense => {
+            
+            if(!array.some(category => expense.categoryId === category.id)){
+                array.push(categories[expense.categoryId])
+            }
+        })
         return (
             <select className={StylesCommon.selectInput} onChange={this.update('filterCategories')} defaultValue={'All'}>
                 <option key={`option-all-filter-categories`} value={'All'}>All</option>
-                {Object.values(categories).map((category) => {
+                {array.map((category) => {
                     return <option key={`option-${category.id}-filter`} value={category.id}>{category.title}</option>
                 })}
             </select>
@@ -274,11 +295,19 @@ export default class Expenses extends React.Component {
         return array;
     }
 
+    countTotal(){
+        const array = this.sort(this.printFiltered(Object.values(this.props.expenses)));
+        let total = 0;
+        array.forEach(expense => total += expense.amount)
+        return currency(total).format()
+    }
+
     render() {
-        const { openContainer, sortByAccounts, sortByCategory, titleAsc, dateAsc } = this.state;
+        const {  sortByAccounts, sortByCategory, titleAsc, dateAsc } = this.state;
+        const { showPage } = this.props;
         return (
-            <div className={`${StylesCommon.mainContainer} ${openContainer ? StylesCommon.mainContainerOpen : ''}`} >
-                {this.printAllOrEdit()}
+            <div className={`${StylesCommon.mainContainer} ${Styles.open}`} >
+                <div className={Styles.total}>Total: {this.countTotal()}</div>
 
                 <div className={`${StylesCommon.listHeader} ${Styles.rows}`}>
                     <div onClick={() => this.setState({ dateAsc: !dateAsc })}>Date{dateAsc ? <FiChevronDown /> : <FiChevronUp />}</div>
@@ -287,8 +316,8 @@ export default class Expenses extends React.Component {
                     <div className={sortByAccounts ? Styles.highlightSort : ''} onClick={() => sortByAccounts ? this.setState({ sortByAccounts: true, sortByCategory: false, titleAsc: !titleAsc }) : this.setState({ sortByAccounts: true, sortByCategory: false, titleAsc: false })}>Account{sortByAccounts && titleAsc ? <FiChevronUp /> : <FiChevronDown />}</div>
                     <div >Amount</div>
                     <div>Filter
-                        {this.printAccountsChoices()}
-                        {this.printCategoriesChoices()}
+                        {showPage === 'account' ? this.printCategoriesChoices() : ''}
+                        {showPage === 'category' ? this.printAccountsChoices() : ''}     
                     </div>
                     {sortByAccounts || sortByCategory ? <div onClick={() => this.setState({ sortByAccounts: false, sortByCategory: false, titleAsc: false, dateAsc: false })} className={Styles.resetFilters}>Reset</div> : ''}
                 </div>

@@ -3,9 +3,9 @@ import React from 'react';
 import { RiBankLine } from 'react-icons/ri'
 import { FaMoneyBillWave } from 'react-icons/fa'
 import { AiFillCreditCard } from "react-icons/ai";
-import Styles from './account_page.module.scss'
+import Styles from './show_page.module.scss'
 import currency from 'currency.js';
-
+import Expenses from '../expenses/expenses_show_container'
 
 export default class AccountsPage extends React.Component {
     constructor(props) {
@@ -62,27 +62,47 @@ export default class AccountsPage extends React.Component {
         )
     }
 
+    print(){
+        const { showPage, category, account } = this.props;
+        if(showPage === 'account'){
+            return(
+                <div className={Styles.accountTitle}>
+                        <div>Account:</div>
+                        <div style={{color: account.color}}>{account.title}</div>
+                    </div>
+            )
+        }
+
+        if(showPage === 'category'){
+            return(
+                <div className={Styles.accountTitle}>
+                        <div>Category:</div>
+                        <div style={{color: category.color}}>{category.title}</div>
+                    </div>
+            )
+        }
+    }
+
 
     render() {
-        const { account } = this.props;
+        const { showPage } = this.props;
         return (
             <div>
                 <div className={Styles.infoPart}>
-                    <div className={Styles.accountTitle}>
-                        Account:
-                        <div>{account.title}</div>
-                    </div>
+                    
+                    {this.print()}
 
-
-                    <div>
+                    {showPage === 'account' ? <div>
                         {this.printIcon()}
-                    </div>
+                    </div> : ''}
                 </div>
 
 
                 <hr />
 
-                {this.printExpenses()}
+                
+                {showPage === 'account' ? <Expenses showPage={'accountId'}/> : ''}
+                {showPage === 'category' ? <Expenses showPage={'categoryId'}/> : ''}
             </div>
         )
     }

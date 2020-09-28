@@ -22,6 +22,7 @@ export default class ExpenseItem extends React.Component {
             categoryId: props.expense.categoryId,
             date: props.expense.date
         }
+        this.form = React.createRef();
     }
 
     printIcon() {
@@ -56,19 +57,20 @@ export default class ExpenseItem extends React.Component {
         }
     }
 
-    updateExpense() {
+    updateExpense(e) {
+        e.preventDefault()
         const { updateExpense, expense } = this.props;
         const newExpense = { ...this.state };
         delete newExpense['edit']
         delete newExpense['showDelete']
         this.setState({ edit: false }, () => {
-            updateExpense({oldExpense: expense, newExpense})
+            updateExpense({ oldExpense: expense, newExpense })
         })
     }
 
-    deleteExpense(){
-        const {deleteExpense, expense } = this.props;
-        this.setState({showDelete: false}, () => {
+    deleteExpense() {
+        const { deleteExpense, expense } = this.props;
+        this.setState({ showDelete: false }, () => {
             deleteExpense(expense)
         })
     }
@@ -105,26 +107,26 @@ export default class ExpenseItem extends React.Component {
         )
     }
 
-    printDate(time){
+    printDate(time) {
         const o_date = new Intl.DateTimeFormat(time)
-        const f_date = (m_ca, m_it) => Object({...m_ca, [m_it.type]: m_it.value});
+        const f_date = (m_ca, m_it) => Object({ ...m_ca, [m_it.type]: m_it.value });
         const m_date = o_date.formatToParts().reduce(f_date, {});
         return `${m_date.day + '-' + m_date.month + '-' + m_date.year}`;
     }
 
-    printTime(time){
+    printTime(time) {
         let hours = new Date(time).getHours();
         let minutes = new Date(time).getMinutes();
         let seconds = new Date(time).getSeconds();
-        if(hours < 10){
+        if (hours < 10) {
             hours = `0${hours}`
-        }   
+        }
 
-        if(minutes < 10){
+        if (minutes < 10) {
             minutes = `0${minutes}`
         }
 
-        if(seconds < 10){
+        if (seconds < 10) {
             seconds = `0${seconds}`
         }
         return `${hours}:${minutes}:${seconds}`
@@ -141,35 +143,39 @@ export default class ExpenseItem extends React.Component {
                     Are you sure?
                     <div>
                         <button onClick={() => this.deleteExpense()}>Yes</button>
-                        <button onClick={() => this.setState({showDelete: false})}>No</button>
+                        <button onClick={() => this.setState({ showDelete: false })}>No</button>
                     </div>
                 </div>
             )
         } else if (edit) {
             return (
-                <div className={StylesCommon.singleItem}>
-                    <div>
-                        $<input type="number" placeholder='0.00' onChange={this.update('amount')} value={amount} required={true}/>
-                        <input type="text" placeholder='New expense' onChange={this.update('title')} value={title} required={true} />
-                        {this.printAccountsChoices()}
-                        {this.printCategoriesChoices()}
+                <form  onSubmit={(e) => this.updateExpense(e)}>
+                    <div className={StylesCommon.singleItem}>
+                        <div className={Styles.singleItemChange}>
+                            <div className={Styles.time}>{this.printTime(expense.date)}</div>
+                            <input type="text" placeholder='Edit expense' onChange={this.update('title')} value={title} required={true} maxLength={45} />
+                            {this.printCategoriesChoices()}
+                            {this.printAccountsChoices()}
+                        $<input type="number" placeholder='0.00' onChange={this.update('amount')} value={amount} required={true} min={0} />
+                        </div>
+                        <div className={StylesCommon.editButtons}>
+                            <FiTrash onClick={() => this.setState({ showDelete: true })} />
+                            <FiX onClick={() => this.setState({ title: expense.title, color: expense.color, type: expense.type, edit: false })} />
+                            <FiCheck onClick={() => this.form.current.click()} />
+                            <button style={{display:'none'}} ref={this.form}></button>
+                        </div>
                     </div>
-                    <div className={StylesCommon.editButtons}>
-                        <FiTrash onClick={() => this.setState({ showDelete: true })} />
-                        <FiX onClick={() => this.setState({ title: expense.title, color: expense.color, type: expense.type, edit: false })} />
-                        <FiCheck onClick={() => this.updateExpense()} />
-                    </div>
-                </div>
+                </form>
             )
         } else {
             return (
                 // onClick={() => history.push(`expenses/${expense.id}`)}
                 <div className={StylesCommon.singleItem} >
-                    <div className={Styles.rows}>
-                        <div className={Styles.time}>{this.printTime(expense.date )}</div>
+                    <div className={`${Styles.rows} ${Styles.rowsOfItem}`}>
+                        <div className={Styles.time}>{this.printTime(expense.date)}</div>
                         <div className={Styles.title} style={{ color: expense.color }}>{expense.title}</div>
-                        <div style={{color: categories[expense.categoryId].color}}>{categories[expense.categoryId].title}</div>
-                        <div style={{color: accounts[expense.accountId].color}}>{accounts[expense.accountId].title}</div>
+                        <div style={{ color: categories[expense.categoryId].color }}>{categories[expense.categoryId].title}</div>
+                        <div style={{ color: accounts[expense.accountId].color }}>{accounts[expense.accountId].title}</div>
                         <div>{currency(expense.amount).format()}</div>
                     </div>
                     <div className={StylesCommon.edit}>

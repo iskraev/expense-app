@@ -8,7 +8,8 @@ export default class Header extends React.Component{
             <header>
                 <div className={Styles.header}>
                     <div>
-                        <a href="/">Main Dashboard</a>
+                        <a href="/"><img src="./dollar.png" alt='dollar'/></a>
+                        <a href="/dashboard">Dashboard</a>
                         <a href="/reports">Reports</a>
                     </div>
 
