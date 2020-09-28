@@ -23,6 +23,10 @@ html,body{
   height: 100%;
 }
 
+a:visited{
+  color: black;
+}
+
 body > div{
   display: flex;
   flex-direction: column;
