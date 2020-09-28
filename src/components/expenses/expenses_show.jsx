@@ -202,7 +202,7 @@ export default class Expenses extends React.Component {
                         }
 
                         if (prevDate !== this.printDate(expense.date)) {
-                            // console.log(this.printDate(expense.date))
+                           
 
                             prevDate = this.printDate(expense.date);
                             let newDate = prevDate.split('-')
