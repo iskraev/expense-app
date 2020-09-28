@@ -26,8 +26,32 @@
     font-size: 1.1em;
     color: gray;
     padding: 0 10px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */  
 
 }
+
+.listHeader > div:nth-child(1):hover{
+    color: black;
+    font-weight: 600;
+}
+
+.listHeader > div:nth-child(3):hover{
+    color: black;
+    font-weight: 600;
+}
+
+.listHeader > div:nth-child(4):hover{
+    color: black;
+    font-weight: 600;
+}
+
+
 .mainContainerOpen{
     transition: max-height 1s ease;
     max-height: 500px;

@@ -132,7 +132,7 @@ export default class ExpenseItem extends React.Component {
 
     printItemOrEdit() {
         const { edit, title, amount, showDelete } = this.state;
-        const { expense, history, categories, accounts } = this.props;
+        const { expense, categories, accounts } = this.props;
 
 
         if (showDelete) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiChevronDown, FiChevronUp, FiPlus, FiX } from 'react-icons/fi'
+import { FiChevronDown, FiChevronUp, FiPlus} from 'react-icons/fi'
 import StylesCommon from '../common.module.scss';
 
 import CreateExpense from './create_expense';
@@ -195,15 +195,16 @@ export default class Expenses extends React.Component {
                         }
 
                         if (prevDate !== this.printDate(expense.date)) {
+                            // console.log(this.printDate(expense.date))
 
                             prevDate = this.printDate(expense.date);
-                            prevDate = prevDate.split('-');
-                            prevDate = `${this.allMonths[prevDate[0] - 1]} ${prevDate[1]}, ${prevDate[2]}`;
+                            let newDate = prevDate.split('-')
+                            newDate = `${this.allMonths[newDate[0] - 1]} ${newDate[1]}, ${newDate[2]}`;
 
 
                             return (
                                 <div key={`expense-${expense.id}`}>
-                                    <div className={StylesCommon.dateRow}><FiChevronDown />{prevDate}<FiChevronDown /></div>
+                                    <div className={StylesCommon.dateRow}><FiChevronDown />{newDate}<FiChevronDown /></div>
                                     <ExpenseItem  history={history} accounts={accounts} categories={categories} expense={expense} updateExpense={updateExpense} deleteExpense={deleteExpense} />
                                 </div>
                             )
@@ -280,8 +281,8 @@ export default class Expenses extends React.Component {
                 <div className={`${StylesCommon.listHeader} ${Styles.rows}`}>
                     <div onClick={() => this.setState({ dateAsc: !dateAsc })}>Date{dateAsc ? <FiChevronDown /> : <FiChevronUp />}</div>
                     <div>Title</div>
-                    <div className={sortByCategory ? Styles.highlightSort : ''} onClick={() => sortByCategory ? this.setState({ sortByAccounts: false, sortByCategory: true, titleAsc: !titleAsc }) : this.setState({ sortByAccounts: false, sortByCategory: true, titleAsc: false })}>Category{sortByCategory && titleAsc ? <FiChevronDown /> : <FiChevronUp />}</div>
-                    <div className={sortByAccounts ? Styles.highlightSort : ''} onClick={() => sortByAccounts ? this.setState({ sortByAccounts: true, sortByCategory: false, titleAsc: !titleAsc }) : this.setState({ sortByAccounts: true, sortByCategory: false, titleAsc: false })}>Account{sortByAccounts && titleAsc ? <FiChevronDown /> : <FiChevronUp />}</div>
+                    <div className={sortByCategory ? Styles.highlightSort : ''} onClick={() => sortByCategory ? this.setState({ sortByAccounts: false, sortByCategory: true, titleAsc: !titleAsc }) : this.setState({ sortByAccounts: false, sortByCategory: true, titleAsc: false })}>Category{sortByCategory && titleAsc ? <FiChevronUp /> : <FiChevronDown />}</div>
+                    <div className={sortByAccounts ? Styles.highlightSort : ''} onClick={() => sortByAccounts ? this.setState({ sortByAccounts: true, sortByCategory: false, titleAsc: !titleAsc }) : this.setState({ sortByAccounts: true, sortByCategory: false, titleAsc: false })}>Account{sortByAccounts && titleAsc ? <FiChevronUp /> : <FiChevronDown />}</div>
                     <div >Amount</div>
                     <div>Filter
                         {this.printAccountsChoices()}

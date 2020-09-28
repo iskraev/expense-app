@@ -10,6 +10,7 @@ export default class CategoryItem extends React.Component {
         this.state = {
             edit: false,
             showDelete: false,
+            id: props.category.id,
             title: props.category.title,
             color: props.category.color,
         }
@@ -48,10 +49,12 @@ export default class CategoryItem extends React.Component {
     }
 
     updateCategory() {
-        const state = this.state;
-        const { updateCategory} = this.props;
+        const { updateCategory, category} = this.props;
+        const updatedCategory = Object.assign(category, this.state)
+        delete updatedCategory['edit']
+        delete updatedCategory['showDelete']
         this.setState({ edit: false }, () => {
-            updateCategory(state)
+            updateCategory(updatedCategory)
         })
     }
 
@@ -70,7 +73,7 @@ export default class CategoryItem extends React.Component {
 
     printItemOrEdit() {
         const {  edit,  title, color, showDelete } = this.state;
-        const { category, history} = this.props;
+        const { category} = this.props;
 
 
         if (showDelete) {
@@ -88,7 +91,7 @@ export default class CategoryItem extends React.Component {
                 <div className={StylesCommon.singleItem}>
                     <div>
 
-                        <input style={{ color: color }} value={title} className={Styles.titleInput} onChange={this.update('title')} />
+                        {category.id === 'none' ? <div style={{ color: color }}className={Styles.titleInput} >{title}</div> : <input style={{ color: color }} value={title} className={Styles.titleInput} onChange={this.update('title')} />}
 
                         <input className={Styles.colorInput} type="color" onChange={this.update('color')} value={color} />
                     </div>

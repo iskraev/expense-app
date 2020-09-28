@@ -1,21 +1,22 @@
 
 .rows{
+    display: table;
 }
 .rows > div{
-    display: flex;
+    height: 20px;
+    // display: flex;
     font-size: 0.8em;
-    align-items: center;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */    
+    // align-items: center;
+    margin-right: 10px;
+   
+    // justify-content: center;
+    display: table-cell;
+    vertical-align: middle;
+    
 }
 //time
 .rows > div:nth-child(1){
-    width: 65px;
+    width: 55px;
     // font-size: 0.7em;
 }
 
@@ -28,11 +29,17 @@
 }
 //Account
 .rows > div:nth-child(3){
-    width: 90px;
+    width: 120px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
 }
 //Category
 .rows > div:nth-child(4){
-    width: 90px;
+    width: 120px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
 }   
 //amount
 .rows > div:nth-child(5){
@@ -120,5 +127,5 @@
     color: black;
     
     
-    margin-left: 5px;
+    // margin-left: 5px;
 }

@@ -77,7 +77,7 @@ export default class AccountItem extends React.Component {
 
     printItemOrEdit() {
         const {  edit,  title, color, type, showDelete } = this.state;
-        const { account, history} = this.props;
+        const { account} = this.props;
 
 
         if (showDelete) {
