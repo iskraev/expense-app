@@ -101,7 +101,8 @@ export default class CategoryItem extends React.Component {
             )
         } else {
             return (
-                <div className={StylesCommon.singleItem} onClick={() => history.push(`categories/${category.id}`)}>
+                // onClick={() => history.push(`categories/${category.id}`)}
+                <div className={StylesCommon.singleItem} >
                     <div>
                         <div className={Styles.title} style={{ color: category.color }}>{category.title}</div>
                     </div>

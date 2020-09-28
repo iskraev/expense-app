@@ -113,7 +113,8 @@ export default class AccountItem extends React.Component {
             )
         } else {
             return (
-                <div className={StylesCommon.singleItem} onClick={() => history.push(`accounts/${account.id}`)}>
+                // onClick={() => history.push(`accounts/${account.id}`)}
+                <div className={StylesCommon.singleItem}>
                     <div>
                         <div className={Styles.type}>{this.printIcon()}</div>
                         <div className={Styles.title} style={{ color: account.color }}>{account.title}</div>

@@ -163,7 +163,8 @@ export default class ExpenseItem extends React.Component {
             )
         } else {
             return (
-                <div className={StylesCommon.singleItem} onClick={() => history.push(`expenses/${expense.id}`)}>
+                // onClick={() => history.push(`expenses/${expense.id}`)}
+                <div className={StylesCommon.singleItem} >
                     <div className={Styles.rows}>
                         <div className={Styles.time}>{this.printTime(expense.date )}</div>
                         <div className={Styles.title} style={{ color: expense.color }}>{expense.title}</div>
