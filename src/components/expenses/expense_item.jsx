@@ -167,8 +167,8 @@ export default class ExpenseItem extends React.Component {
                     <div className={Styles.rows}>
                         <div className={Styles.time}>{this.printTime(expense.date )}</div>
                         <div className={Styles.title} style={{ color: expense.color }}>{expense.title}</div>
-                        <div>{categories[expense.categoryId].title}</div>
-                        <div>{accounts[expense.accountId].title}</div>
+                        <div style={{color: categories[expense.categoryId].color}}>{categories[expense.categoryId].title}</div>
+                        <div style={{color: accounts[expense.accountId].color}}>{accounts[expense.accountId].title}</div>
                         <div>{currency(expense.amount).format()}</div>
                     </div>
                     <div className={StylesCommon.edit}>

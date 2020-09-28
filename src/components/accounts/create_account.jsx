@@ -37,7 +37,7 @@ export default class CreateAccount extends React.Component {
                 <form onSubmit={(e) => this.createAccount(e)}>
                     <div>
                         <input className={StylesCommon.colorInput} type="color" onChange={this.update('color')} value={color} />  
-                        <input type="text" placeholder='New Account name' onChange={this.update('title')} value={title} />
+                        <input type="text" placeholder='New Account name' onChange={this.update('title')} value={title} required={true}/>
                         <select className={StylesCommon.selectInput} onChange={this.update('type')}>
                             <option key={"bankAccount"} value="bankAccount">Bank account</option>
                             <option key={"credit"} value="credit">Credit</option>

@@ -37,7 +37,7 @@ export default class CreateCategory extends React.Component {
                 <form onSubmit={(e) => this.createCategory(e)}>
                     <div>
                         <input className={StylesCommon.colorInput} type="color" onChange={this.update('color')} value={color} />  
-                        <input type="text" placeholder='New category' onChange={this.update('title')} value={title} />
+                        <input type="text" placeholder='New category' onChange={this.update('title')} value={title} required={true}/>
                     </div>
                     <div>
                         <button onClick={cancel}>Cancel</button>
