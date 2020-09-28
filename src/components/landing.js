@@ -7,7 +7,7 @@ export default () => (
         <div>
             Welcome to Exp-Manager!
             Where you can manage all of your expenses with ease!
-        This project is a challenge from #CareerHack with <span className={Styles.mint}>@Mintbean</span> and was built in 3 days!
+        This project is a challenge from #CareerHack with <span className={Styles.mint}>@Mintbean</span> and was built in 2 days!
         </div>
         <div><a href="/dashboard">Start managing!</a></div>
     </div>
